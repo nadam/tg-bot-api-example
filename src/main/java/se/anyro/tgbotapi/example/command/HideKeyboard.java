@@ -8,6 +8,8 @@ import se.anyro.tgbotapi.types.reply_markup.ReplyKeyboardHide;
 
 public class HideKeyboard extends Command {
 
+    private static final ReplyKeyboardHide REPLY_KEYBOARD_HIDE = new ReplyKeyboardHide();
+
     public HideKeyboard(TgBotApi api) {
         super(api);
     }
@@ -19,7 +21,6 @@ public class HideKeyboard extends Command {
 
     @Override
     public void run(Message message) throws IOException {
-        ReplyKeyboardHide keyboardHide = new ReplyKeyboardHide();
-        api.sendMessage(message.chat.id, "Keyboard hidden", null, false, 0, keyboardHide);
+        api.sendMessage(message.chat.id, "Keyboard hidden", null, false, 0, REPLY_KEYBOARD_HIDE);
     }
 }
