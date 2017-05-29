@@ -58,10 +58,10 @@ public class InlineKeyboard extends Command {
                 api.editMessageText(message.chat.id, message.message_id, newText, null, true, markup);
                 break;
             case ANSWER:
-                api.answerCallbackQuery(callbackQuery, "This is a normal answer", false);
+                api.answerCallbackQuery(callbackQuery, "This is a normal answer", false, null, 0);
                 break;
             case ALERT:
-                api.answerCallbackQuery(callbackQuery, "This is an alert", true);
+                api.answerCallbackQuery(callbackQuery, "This is an alert", true, null, 0);
                 break;
             case HIDE:
                 api.editMessageText(message.chat.id, message.message_id, "Message without inline keyboard", null, true,
