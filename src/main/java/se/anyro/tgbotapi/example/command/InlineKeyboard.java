@@ -13,7 +13,9 @@ import se.anyro.tgbotapi.types.reply_markup.InlineKeyboardMarkup;
  */
 public class InlineKeyboard extends Command {
 
-    private enum CallbackData { EDIT, ANSWER, ALERT, HIDE };
+    private enum CallbackData {
+        EDIT, ANSWER, ALERT, HIDE
+    };
     
     private InlineKeyboardMarkup markup = InlineKeyboardMarkup.createVertical(
             callbackDataButton("Edit message", CallbackData.EDIT),
@@ -23,7 +25,7 @@ public class InlineKeyboard extends Command {
             InlineKeyboardButton.switchInlineQuery("Switch to inline", "Text from inline keyboard"),
             callbackDataButton("Hide keyboard", CallbackData.HIDE)
             );
-    
+
     private InlineKeyboardButton callbackDataButton(String text, CallbackData cb) {
         return InlineKeyboardButton.callbackData(text, cb.toString());
     }
