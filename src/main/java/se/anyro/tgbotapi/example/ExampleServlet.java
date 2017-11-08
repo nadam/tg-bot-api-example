@@ -16,6 +16,7 @@ import se.anyro.tgbotapi.TgBotApi.ErrorListener;
 import se.anyro.tgbotapi.example.command.About;
 import se.anyro.tgbotapi.example.command.Bangkok;
 import se.anyro.tgbotapi.example.command.Command;
+import se.anyro.tgbotapi.example.command.DummyGame;
 import se.anyro.tgbotapi.example.command.Forward;
 import se.anyro.tgbotapi.example.command.Help;
 import se.anyro.tgbotapi.example.command.HideKeyboard;
@@ -40,6 +41,7 @@ public class ExampleServlet extends HttpServlet implements ErrorListener {
     private Map<String, Command> commands = new LinkedHashMap<>();
 
     private InlineKeyboard inlineKeyboard;
+    private DummyGame game;
 
     private InlineQueryHandler inlineQueryHandler;
     
@@ -56,6 +58,8 @@ public class ExampleServlet extends HttpServlet implements ErrorListener {
         addCommand(new Keyboard(api));
         inlineKeyboard = new InlineKeyboard(api);
         addCommand(inlineKeyboard);
+        game = new DummyGame(api);
+        addCommand(game);
         addCommand(new HideKeyboard(api));
         addCommand(new Bangkok(api));
         addCommand(new About(api));
@@ -71,7 +75,7 @@ public class ExampleServlet extends HttpServlet implements ErrorListener {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-        resp.setStatus(200);
+        resp.setStatus(HttpServletResponse.SC_OK);
 
         Update update = api.parseFromWebhook(req.getReader());
         try {
@@ -82,7 +86,11 @@ public class ExampleServlet extends HttpServlet implements ErrorListener {
             } else if (update.isChosenInlineResult()) {
                 inlineQueryHandler.handleChosenInlineResult(update.chosen_inline_result);
             } else if (update.isCallbackQuery()) {
-                inlineKeyboard.handleCallbackQuery(update.callback_query);
+                if (update.callback_query.game_short_name != null) {
+                    game.handleCallbackQuery(update.callback_query);
+                } else {
+                    inlineKeyboard.handleCallbackQuery(update.callback_query);
+                }
             } else {
                 api.debug("Unexpected update");
             }
@@ -119,6 +127,12 @@ public class ExampleServlet extends HttpServlet implements ErrorListener {
         Location location = message.location;
         if (location != null) {
             api.sendLocation(message.chat.id, location.latitude, location.longitude, 0, null);
+            return;
+        }
+
+        if (message.document != null) {
+            api.sendMessage(message.chat.id, "File id: " + message.document.file_id);
+            return;
         }
         
         // Unknown command. Show help text instead
