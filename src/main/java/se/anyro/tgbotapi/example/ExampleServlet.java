@@ -22,6 +22,7 @@ import se.anyro.tgbotapi.example.command.Help;
 import se.anyro.tgbotapi.example.command.HideKeyboard;
 import se.anyro.tgbotapi.example.command.InlineKeyboard;
 import se.anyro.tgbotapi.example.command.Keyboard;
+import se.anyro.tgbotapi.example.command.Markdown;
 import se.anyro.tgbotapi.example.command.Profile;
 import se.anyro.tgbotapi.example.command.Reply;
 import se.anyro.tgbotapi.example.command.ToDoc;
@@ -55,6 +56,7 @@ public class ExampleServlet extends HttpServlet implements ErrorListener {
         addCommand(new Reply(api));
         addCommand(new Forward(api));
         addCommand(new ToDoc(api));
+        addCommand(new Markdown(api));
         addCommand(new Keyboard(api));
         inlineKeyboard = new InlineKeyboard(api);
         addCommand(inlineKeyboard);
@@ -84,7 +86,8 @@ public class ExampleServlet extends HttpServlet implements ErrorListener {
             } else if (update.isInlineQuery()) {
                 inlineQueryHandler.handleInlineQuery(update.inline_query);
             } else if (update.isChosenInlineResult()) {
-                inlineQueryHandler.handleChosenInlineResult(update.chosen_inline_result);
+                // Not used at the moment
+                // inlineQueryHandler.handleChosenInlineResult(update.chosen_inline_result);
             } else if (update.isCallbackQuery()) {
                 if (update.callback_query.game_short_name != null) {
                     game.handleCallbackQuery(update.callback_query);
