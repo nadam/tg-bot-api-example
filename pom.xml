@@ -11,7 +11,7 @@
     <properties>
         <app.id>tg-bot-api-example</app.id>
         <app.version>1</app.version>
-        <tgbotapi.version>1.4-SNAPSHOT</tgbotapi.version>
+        <tgbotapi.version>1.9-SNAPSHOT</tgbotapi.version>
         <appengine.version>1.9.31</appengine.version>
         <gcloud.plugin.version>2.0.9.74.v20150814</gcloud.plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

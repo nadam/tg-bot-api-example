@@ -129,7 +129,7 @@ public class ExampleServlet extends HttpServlet implements ErrorListener {
         
         Location location = message.location;
         if (location != null) {
-            api.sendLocation(message.chat.id, location.latitude, location.longitude, 0, null);
+            api.sendLocation(message.chat.id, location.latitude, location.longitude, 0, 0, null);
             return;
         }
 

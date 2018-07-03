@@ -40,6 +40,6 @@ public class Profile extends Command {
         builder.append("Photos: ").append(userProfilePhotos.total_count);
         
         PhotoSize photo = userProfilePhotos.photos[0][0];
-        api.sendPhoto(message.chat.id, photo.file_id, builder.toString(), 0, null);
+        api.sendPhoto(message.chat.id, photo.file_id, builder.toString(), null, 0, null);
     }
 }

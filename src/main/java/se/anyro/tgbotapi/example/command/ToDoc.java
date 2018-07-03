@@ -38,6 +38,6 @@ public class ToDoc extends Command {
         api.sendChatAction(chatId, ChatAction.UPLOAD_DOCUMENT);
         byte[] photo = api.downloadFile(photoSize.file_id);
         ByteArrayInputStream photoStream = new ByteArrayInputStream(photo);
-        api.sendDocument(chatId, photoStream, "photo", "Photo as document", 0, null);
+        api.sendDocument(chatId, photoStream, "photo", "Photo as document", null, 0, null);
     }
 }
