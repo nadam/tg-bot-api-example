@@ -12,7 +12,7 @@
         <app.id>tg-bot-api-example</app.id>
         <app.version>1</app.version>
         <tgbotapi.version>1.9-SNAPSHOT</tgbotapi.version>
-        <appengine.version>1.9.31</appengine.version>
+        <appengine.version>1.9.48</appengine.version>
         <gcloud.plugin.version>2.0.9.74.v20150814</gcloud.plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
@@ -85,8 +85,8 @@
                 <version>3.1</version>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
             <plugin>
